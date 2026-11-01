@@ -325,7 +325,7 @@ Supply chain security
 ✅ Trivy image scan that fails on fixable HIGH/CRITICAL vulnerabilities
 ✅ Pinned base images, GitHub Actions versions and npm lock files
 Dependabot for dependency updates; GitHub Actions pinned by commit SHA
-Static code analysis (CodeQL or Semgrep); SBOM and image signing with cosign later
+Static code analysis (SonarQube or Semgrep); and image signing with cosign later
 
 Observability
 
