@@ -18,11 +18,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: arn:aws:iam::<account-id>:role/<role-name>
-          aws-region: ${{ env.AWS_REGION }}
+      # - name: Configure AWS credentials
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #     role-to-assume: arn:aws:iam::<account-id>:role/<role-name>
+      #     aws-region: ${{ env.AWS_REGION }}
     
       - name: Build the image
         working-directory: hello-world    
@@ -31,12 +31,12 @@ jobs:
       - name: scan the image using trivy
         run: trivy image mco-frontend:latest
 
-      - name: Login to ECR
-        run: |
-          aws ecr get-login-password --region <region> | podman login --username AWS --password-stdin <ecr-repo-uri>
+      # - name: Login to ECR
+      #   run: |
+      #     aws ecr get-login-password --region <region> | podman login --username AWS --password-stdin <ecr-repo-uri>
 
-      - name: Push the image to ECR
-        working-directory: hello-world
-        run: podman push "$REGISTRY/mco-frontend:latest"
+      # - name: Push the image to ECR
+      #   working-directory: hello-world
+      #   run: podman push "$REGISTRY/mco-frontend:latest"
 
       
