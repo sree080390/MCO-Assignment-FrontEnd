@@ -34,7 +34,7 @@ jobs:
           version: latest
 
       - name: scan the image using trivy
-        run: trivy image mco-frontend:latest
+        run: trivy image --image-src podman mco-frontend:latest
 
       # - name: Login to ECR
       #   run: |
