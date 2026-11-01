@@ -29,13 +29,16 @@ jobs:
         run: podman build -t mco-frontend:latest .
       
       - name: Set up Trivy
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@v0.35.0
         with:
-          version: latest
+          image-ref: mco-frontend:latest
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          exit-code: "1"
+          format: table
+          scanners: vuln
 
-      - name: scan the image using trivy
-        run: trivy image --image-src podman mco-frontend:latest
-
+    
       # - name: Login to ECR
       #   run: |
       #     aws ecr get-login-password --region <region> | podman login --username AWS --password-stdin <ecr-repo-uri>
