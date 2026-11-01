@@ -1,4 +1,4 @@
-name: MCO-Backend-Pipeline
+name: MCO-Frontend-Pipeline
 on:
   push:
     branches: [ main ]
