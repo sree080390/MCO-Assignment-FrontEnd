@@ -27,11 +27,15 @@ jobs:
       - name: Build the image
         working-directory: hello-world    
         run: podman build -t mco-frontend:latest .
+
+      - name: Save image for scanning
+        run: podman save -o image.tar "$REGISTRY/mco-frontend:latest"
       
       - name: Set up Trivy
         uses: aquasecurity/trivy-action@v0.35.0
         with:
           image-ref: mco-frontend:latest
+          input: image.tar
           severity: CRITICAL,HIGH
           ignore-unfixed: true
           exit-code: "1"
