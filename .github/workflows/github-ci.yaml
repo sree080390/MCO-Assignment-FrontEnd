@@ -27,7 +27,12 @@ jobs:
       - name: Build the image
         working-directory: hello-world    
         run: podman build -t mco-frontend:latest .
-
+      
+      - name: Set up Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          version: '0.43.0'
+          
       - name: scan the image using trivy
         run: trivy image mco-frontend:latest
 
